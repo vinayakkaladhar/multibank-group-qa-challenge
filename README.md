@@ -342,6 +342,15 @@ The `playwright.yml` workflow is documented as installing Node.js 20 and Chromiu
 Review the workflow files in this directory to confirm which workflow is active and whether its browser installation steps match the configured Chromium and Firefox projects. The local browser setup documented above installs both browsers.
 
 ---
+### Successful GitHub Actions Execution
+
+A successful GitHub Actions workflow execution is available here with results captured as artifacts:
+
+[View Successful GitHub Actions Run](https://github.com/vinayakkaladhar/multibank-group-qa-challenge/actions/runs/41800809096)
+
+This execution demonstrates the successful workflow run and provides access to its recorded test results.
+
+---
 
 ## Known limitations and assumptions
 
