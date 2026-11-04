@@ -351,7 +351,22 @@ A successful GitHub Actions workflow execution is available here with results ca
 This execution demonstrates the successful workflow run and provides access to its recorded test results.
 
 ---
+### Code Quality – ESLint
 
+The repository includes ESLint to maintain code quality and consistency across the automation codebase.
+
+- Performs static code analysis on JavaScript and TypeScript files.
+- Identifies potential errors and code quality issues.
+- Helps maintain consistent coding practices.
+- Integrated as a separate GitHub Actions workflow.
+- Can be triggered manually through GitHub Actions (`workflow_dispatch`).
+
+**Run linting locally:**
+
+```bash
+npm run lint
+```
+---
 ## Known limitations and assumptions
 
 1. **Spot market terminology:** The inspected Spot market page displays individual crypto assets with price and percentage-change information. The current tests validate those observed fields; they do not claim to validate conventional currency pairs such as BTC/USD or ETH/USD.
