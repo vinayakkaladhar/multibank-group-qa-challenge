@@ -14,7 +14,7 @@ test.describe('Content & Links', () => {
   });
 
   // CNT-001: Marketing banner / hero
-  test('CNT-001: Marketing banner renders in expected region',
+  test('@smoke CNT-001: Marketing banner renders in expected region',
     async ({ page }) => {
       const home = new HomePage(page);
       await home.verifyHeroContent();

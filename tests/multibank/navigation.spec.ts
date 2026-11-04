@@ -27,7 +27,7 @@ test.describe('Navigation & Layout', () => {
         });
 
         // NAV-001: Verify main navigation items
-        test('NAV-001: Main navigation renders expected items', async () => {
+        test('@smoke NAV-001: Main navigation renders expected items', async () => {
 
           await nav.visible();
 
