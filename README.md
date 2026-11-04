@@ -10,7 +10,7 @@ The suite covers navigation, Spot market content, homepage and Company page cont
 | Spot market page | `https://mb.io/en/explore` |
 | Framework | Playwright Test |
 | Language | TypeScript |
-| Browser projects | Chromium (Chrome) and Firefox |
+| Browser projects | Chromium (Chrome), Firefox and Webkit |
 | Reporting | Playwright HTML report |
 
 ---
