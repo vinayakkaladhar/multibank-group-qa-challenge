@@ -5,6 +5,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -21,13 +22,13 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm run test:smoke
+        run: npm ci
 
       - name: Install Playwright browsers
         run: npx playwright install
 
-      - name: Run Playwright tests
-        run: npm runtest:smoke
+      - name: Run Smoke Tests
+        run: npm run test:smoke
 
       - name: Upload test results
         if: always()
