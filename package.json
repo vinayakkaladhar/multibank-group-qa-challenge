@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
+    "lint": "eslint .",
     "test:navigation": "playwright test tests/multibank/navigation.spec.ts",
     "test:smoke": "playwright test tests --grep '@smoke' --workers=1",
     "test:all": "playwright test",
