@@ -27,13 +27,17 @@ test.describe('Trading Functionality', () => {
   // Requirement 2:
   // Trading pairs are correctly grouped into categories
 
-  test('TC03 - Trading categories are displayed', async () => {
-    const categories = await tradingPage.getCategories();
+test('TC03 - Trading categories are displayed', async ({ page }) => {
+  await expect(page.getByText('Hot', { exact: true })).toBeVisible();
+  await expect(page.getByText('Gainers', { exact: true })).toBeVisible();
+  await expect(page.getByText('Losers', { exact: true })).toBeVisible();
 
-    expect(categories).toEqual(
-      expect.arrayContaining(['Hot', 'Gainers', 'Losers'])
-    );
-  });
+  const categories = await tradingPage.getCategories();
+
+  expect(categories).toEqual(
+    expect.arrayContaining(['Hot', 'Gainers', 'Losers'])
+  );
+});
 
   test('TC04 - Trading pairs can be filtered by category', async () => {
     const categories = ['Hot', 'Gainers', 'Losers'];
@@ -55,7 +59,6 @@ test.describe('Trading Functionality', () => {
   // Trading pair entries contain expected data fields
 
   test('TC05 - Trading pairs contain expected data fields', async () => {
-    await tradingPage.debugTradingPairData();
     await tradingPage.verifyTradingPairData();
   });
 

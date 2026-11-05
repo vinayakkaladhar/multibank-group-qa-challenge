@@ -17,9 +17,9 @@ export class TradingPage {
       exact: true
     });
 
-    this.categoryButtons = page.getByRole('button', {
-      name: /^(Hot|Gainers|Losers)$/
-    });
+this.categoryButtons = page.locator('button').filter({
+  hasText: /^(Hot|Gainers|Losers)$/
+});
 
     this.marketTable = page.getByRole('table');
 
@@ -77,9 +77,21 @@ async verifyTradingPairData() {
     return (await this.getTradingPairs()).length;
   }
 
-  async getCategories() {
-    return await this.categoryButtons.allTextContents();
+async getCategories() {
+  const categories = ['Hot', 'Gainers', 'Losers'];
+
+  const visibleCategories = [];
+
+  for (const category of categories) {
+    const button = this.page.getByText(category, { exact: true });
+
+    if (await button.first().isVisible()) {
+      visibleCategories.push(category);
+    }
   }
+
+  return visibleCategories;
+}
 
   async selectCategory(category: string) {
     await this.page.getByRole('button', {
@@ -99,26 +111,16 @@ async verifyTradingPairData() {
     await expect(button).toHaveClass(/bg-|active|selected/);
   }
 
-async debugTradingPairData() {
-  const table = this.marketTable;
+async debugCategories() {
+  const buttons = await this.page.locator('button').evaluateAll(buttons =>
+    buttons.map(button => ({
+      text: button.innerText.trim(),
+      ariaLabel: button.getAttribute('aria-label'),
+      role: button.getAttribute('role'),
+      className: button.className
+    }))
+  );
 
-  const data = await table.evaluate(table => {
-    const headers = Array.from(
-      table.querySelectorAll('thead th')
-    ).map(header => header.textContent?.trim());
-
-    const rows = Array.from(
-      table.querySelectorAll('tbody tr')
-    ).map(row =>
-      Array.from(row.querySelectorAll('td')).map(
-        cell => cell.innerText.trim()
-      )
-    );
-
-    return { headers, rows };
-  });
-
-  console.log('TABLE HEADERS:', data.headers);
-  console.log('TABLE ROWS:', JSON.stringify(data.rows, null, 2));
+  console.log('ALL BUTTONS:', buttons);
 }
 }
